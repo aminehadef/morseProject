@@ -186,10 +186,12 @@ var codeMorce = {
         "length" : 5
     }
 }
-inpText.addEventListener('keyup', ()=>{
-    Ptranslation.innerHTML = ''
-    var expInpText = inpText.value.split('')
-    for(let i = 0; i < expInpText.length; i++){
-        Ptranslation.innerHTML += codeMorce[expInpText[i]].value
+inpText.addEventListener('keyup', (e)=>{
+    if(e.keyCode > 64 && e.keyCode < 91 || e.keyCode > 95 && e.keyCode < 106 || e.keyCode == 8 ){
+        Ptranslation.innerHTML = ''
+        var expInpText = inpText.value.split('')
+        for(let i = 0; i < expInpText.length; i++){
+            Ptranslation.innerHTML += codeMorce[expInpText[i]].value
+        }
     }
 })
