@@ -1,40 +1,195 @@
 
 var inpText  = document.getElementById('text')
 var Ptranslation = document.getElementById('translation')
-var hisTxt = ''
-var lastCaracInp
-var morse
-var txt
-var lenMorse
+var button = document.getElementById('button')
 var codeMorce = {
-    "a" : "._","b" : "_...","c" : "_._.","d" : "_..","e" : ".","f" : ".._.","g" : "__.","h" : "....","i" : "..","j" : ".___","k" : "_._","l" : "._..","m" : "__","n" : "_.","o" : "___","p" : ".__.","q" : "__._","r" : "._.","s" : "...","t" : "_","u" : ".._","v" : "..._","w" : ".__","x" : "_.._","y" : "_.__","z" : "__.."," " : "/",1   : ".____",2   : "..___",3   : "...__",4   : "...._",5   : ".....",6   : "_....",7   : "__...",8   : "___..",9   : "____.",0   : "_____"
-}
-
-function findByKey(key){
-    return codeMorce[key]
-}
-function findByValue(value){
-    for([key, value1] of Object.entries(codeMorce)){
-        if (value1 == value) {
-            return key
-        }   
+    "a" : {
+        "value"  : "._",
+        "length" : 2
+    },
+    "b" : {
+        "value" : "_...",
+        "length" : 4
+    },
+    "c" : {
+        "value" : "_._.",
+        "length" : 4
+    },
+    "e" : 
+    {
+        "value" :".",
+        "length" : 1
+    },
+    "f" : 
+    {
+        "value" :".._.",
+        "length" : 4
+    },
+    "d" : 
+    {
+        "value" :"_..",
+        "length" : 3
+    },
+    "g" : 
+    {
+        "value" :"__.",
+        "length" : 3
+    },
+    "h" : 
+    {
+        "value" :"....",
+        "length" : 4
+    },
+    "i" : 
+    {
+        "value" :"..",
+        "length" : 2
+    },
+    "j" : 
+    {
+        "value" :".___",
+        "length" : 4
+    },
+    "k" : 
+    {
+        "value" :"_._",
+        "length" : 3
+    },
+    "l" : 
+    {
+        "value" :"._..",
+        "length" : 4
+    },
+    "m" : 
+    {
+        "value" :"__",
+        "length" : 2
+    },
+    "n" : 
+    {
+        "value" :"_.",
+        "length" : 2
+    },
+    "o" : 
+    {
+        "value" :"___",
+        "length" : 3
+    },
+    "p" : 
+    {
+        "value" :".__.",
+        "length" : 4
+    },
+    "q" : 
+    {
+        "value" :"__._",
+        "length" : 4
+    },
+    "r" : 
+    {
+        "value" :"._.",
+        "length" : 3
+    },
+    "s" : 
+    {
+        "value" :"...",
+        "length" : 3
+    },
+    "t" : 
+    {
+        "value" :"_",
+        "length" : 1
+    },
+    "u" : 
+    {
+        "value" :".._",
+        "length" : 3
+    },
+    "v" : 
+    {
+        "value" :"..._",
+        "length" : 4
+    },
+    "w" : 
+    {
+        "value" :".__",
+        "length" : 3
+    },
+    "x" : 
+    {
+        "value" :"_.._",
+        "length" : 4
+    },
+    "y" : 
+    {
+        "value" :"_.__",
+        "length" : 4
+    },
+    "z" : 
+    {
+        "value" :"__..",
+        "length" : 4
+    },
+    " " : 
+    {
+        "value" :"/",
+        "length" : 1
+    },
+    1   : 
+    {
+        "value" :".____",
+        "length" : 5
+    },
+    2   : 
+    {
+        "value" :"..___",
+        "length" : 5
+    },
+    3   : 
+    {
+        "value" :"...__",
+        "length" : 5
+    },
+    4   : 
+    {
+        "value" :"...._",
+        "length" : 5
+    },
+    5   : 
+    {
+        "value" :".....",
+        "length" : 5
+    },
+    6   : 
+    {
+        "value" :"_....",
+        "length" : 5
+    },
+    7   : 
+    {
+        "value" :"__...",
+        "length" : 5
+    },
+    8   : 
+    {
+        "value" :"___..",
+        "length" : 5
+    },
+    9   : 
+    {
+        "value" :"____.",
+        "length" : 5
+    },
+    0   : 
+    {
+        "value" :"_____",
+        "length" : 5
     }
 }
-inpText.addEventListener('keyup', (e)=>{
-    if(e.keyCode < 91 && e.keyCode > 64 || e.keyCode == 32){
-        lastCaracInp = inpText.value.substr(inpText.value.length - 1)
-        hisTxt = lastCaracInp
-        morse = findByKey(lastCaracInp)
-        txt = findByValue(findByKey(lastCaracInp))
-        lenMorse = morse.length
-
-        Ptranslation.innerText += morse
-
-    }else if(e.keyCode == 8){
-        lenMorse = morse.length
-        Ptranslation.innerText = Ptranslation.innerText.slice(0, lenMorse)
-
-        lastCaracInp = inpText.value.substr(inpText.value.length - 1)
-        hisTxt = lastCaracInp
-    } 
+button.addEventListener('click', ()=>{
+    Ptranslation.innerHTML = ''
+    var expInpText = inpText.value.split('')
+    for(let i = 0; i < expInpText.length; i++){
+        Ptranslation.innerHTML += codeMorce[expInpText[i]].value
+    }
 })
