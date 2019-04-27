@@ -186,7 +186,7 @@ var codeMorce = {
         "length" : 5
     }
 }
-button.addEventListener('click', ()=>{
+inpText.addEventListener('keyup', ()=>{
     Ptranslation.innerHTML = ''
     var expInpText = inpText.value.split('')
     for(let i = 0; i < expInpText.length; i++){
