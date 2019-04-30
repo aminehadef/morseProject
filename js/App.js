@@ -2,11 +2,13 @@ var inpText  = document.getElementById('text')
 var Ptranslation = document.getElementById('translation')
 var play = document.getElementById('play')
 var codeMorce = {
-    "a" : {
+    "a" :
+    {
         "value"  : "._",
         "length" : 2
     },
-    "b" : {
+    "b" :
+    {
         "value" : "_...",
         "length" : 4
     },
@@ -216,7 +218,7 @@ play.addEventListener('click', ()=>{
             bip(300)
         }else{
             console.log('/'); 
-            bip(500)  
+            bip(500)
         }
         i++
     },1000)
