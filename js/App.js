@@ -1,4 +1,3 @@
-
 var inpText  = document.getElementById('text')
 var Ptranslation = document.getElementById('translation')
 var play = document.getElementById('play')
@@ -201,17 +200,37 @@ inpText.addEventListener('keyup', (e)=>{
         play.style.display = "none"
     }
 })
-
 play.addEventListener('click', ()=>{
     var expMorseTxt = Ptranslation.innerHTML.split('')
-    for (let i = 0; i < expMorseTxt.length; i++) {
-        if (expMorseTxt[i] == ".") {
-            console.log('bip');
-        }else if(expMorseTxt[i] == "_"){
-            console.log('biiiiip');
-        }else if(expMorseTxt[i] == "/"){
-            console.log(' / ');
-            
+    var i = 0;
+    var interv = setInterval(()=>{
+        if (i == expMorseTxt.length - 1) {
+            clearInterval(interv)
         }
-    }
+        if (expMorseTxt[i] == '.') {
+            console.log('bip');
+            bip(150)
+        }
+        else if(expMorseTxt[i] == '_'){
+            console.log('biiip');
+            bip(300)
+        }else{
+            console.log('/'); 
+            bip(500)  
+        }
+        i++
+    },1000)
 })
+
+function bip(time){
+    const ctxAudion = new (window.AudioContext || window.webkitAudioContext)
+    const osc = ctxAudion.createOscillator()
+    osc.type = 'triangle'
+    osc.frequency.value = 150
+    osc.start()
+    osc.connect(ctxAudion.destination)
+    var interval = setInterval(()=>{
+        osc.disconnect(ctxAudion.destination)
+        clearInterval(interval)
+    },time)
+}
